@@ -15,9 +15,37 @@
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
-function Person() {
+function Person(name1,age1) {
+  this.name = name1
+  this.age = age1
+  this.stomach = []
+  }
 
-}
+  Person.prototype.eat = function(edible){
+    if(this.stomach.length < 10){
+      this.stomach.push(edible)
+    }
+  }
+  
+  const pO = new Person({
+  name: 'Jordon'
+  })
+  
+  pO.eat('grape')
+
+  Person.prototype.poop = function(){
+    this.stomach = []
+  }
+
+  Person.prototype.toString = function(){
+    return `${this.name}, ${this.age}` 
+  }
+const nameAge = new Person({
+  name: 'Jordon',
+  age: 50
+})
+  
+nameAge.toString
 
 
 /*
@@ -36,10 +64,20 @@ function Person() {
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car() {
-
+function Car(model, milesPerGallon) {
+  this.model = model
+  this.milesPerGallon = milesPerGallon
+  this.tank = 0
+  this.odometer = 0
 }
 
+Car.prototype.fill = function(gallons){
+  this.tank += gallons
+}
+
+const fillTank = new Car({
+})
+fillTank.fill(20)
 
 /*
   TASK 3
@@ -49,18 +87,32 @@ function Car() {
         + Should return a string "Playing with x", x being the favorite toy.
 */
 
-function Baby() {
-
+function Baby(name1, age1, favoriteToy) {
+Person.call(this, name1, age1)
+this.favoriteToy = favoriteToy
 }
+
+Baby.prototype = Object.create(Person.prototype)
+
+Baby.prototype.play = function(){
+  return `playing with ${this.favoriteToy}`
+}
+
+const playing = new Baby({
+  favoriteToy: 'x'
+})
+
+playing.play
+
 
 
 /* 
   TASK 4
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. 'this' is used to refer to an object 
+  2. 'this' is a part of the global scope
+  3. 'this' will refer to the object before the dot
+  4. 'this' can be used to call certain items in an object
 */
 
 ///////// END OF CHALLENGE /////////
